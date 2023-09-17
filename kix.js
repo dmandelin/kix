@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth * 0.8;
     canvas.height = window.innerHeight * 0.8;
-    var lineRadius = 100;
+    var lineRadius = Math.min(canvas.width, canvas.height) / 5;
     // Line center of mass
-    var xc = 360;
-    var yc = 100;
+    var xc = canvas.width / 2;
+    var yc = canvas.height / 2;
     // Line angle
     var th = d2r(0);
     // Line translational and rotational velocity
@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var sin = Math.sin(th);
         var dvx = -2 * (vx + vr * lineRadius * sin) / (1 + sin * sin);
         var dvr = sin * dvx / lineRadius;
-        console.log("dvx = ".concat(dvx.toFixed(2), ", dvr = ").concat(dvr.toFixed(5)));
         vx += dvx;
         vr += dvr;
         x0 = Math.max(0, Math.min(x0, canvas.width - 1));
@@ -66,7 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var sin = Math.sin(th);
         var dvx = -2 * (vx - vr * lineRadius * sin) / (1 + sin * sin);
         var dvr = -sin * dvx / lineRadius;
-        console.log("dvx = ".concat(dvx.toFixed(2), ", dvr = ").concat(dvr.toFixed(5)));
         vx += dvx;
         vr += dvr;
         x1 = Math.max(0, Math.min(x1, canvas.width - 1));
@@ -76,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var cos = -Math.cos(th);
         var dvy = -2 * (vy + vr * lineRadius * cos) / (1 + cos * cos);
         var dvr = cos * dvy / lineRadius;
-        console.log("dvy = ".concat(dvy.toFixed(2), ", dvr = ").concat(dvr.toFixed(5)));
         vy += dvy;
         vr += dvr;
         y0 = Math.max(0, Math.min(y0, canvas.height - 1));
@@ -86,7 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var cos = -Math.cos(th);
         var dvy = -2 * (vy - vr * lineRadius * cos) / (1 + cos * cos);
         var dvr = -cos * dvy / lineRadius;
-        console.log("dvy = ".concat(dvy.toFixed(2), ", dvr = ").concat(dvr.toFixed(5)));
         vy += dvy;
         vr += dvr;
         y1 = Math.max(0, Math.min(y1, canvas.height - 1));

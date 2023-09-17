@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", function() {
     canvas.width = window.innerWidth * 0.8;
     canvas.height = window.innerHeight * 0.8;
 
-    const lineRadius = 100;
+    const lineRadius = Math.min(canvas.width, canvas.height) / 5;
 
     // Line center of mass
-    let xc = 360;
-    let yc = 100;
+    let xc = canvas.width / 2;
+    let yc = canvas.height / 2;
     // Line angle
     let th = d2r(0);
 
@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const sin = Math.sin(th);
         const dvx = -2 * (vx + vr * lineRadius * sin) / (1 + sin*sin);
         const dvr = sin * dvx / lineRadius;
-        console.log(`dvx = ${dvx.toFixed(2)}, dvr = ${dvr.toFixed(5)}`);
         vx += dvx;
         vr += dvr;
         x0 = Math.max(0, Math.min(x0, canvas.width - 1));
@@ -83,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const sin = Math.sin(th);
         const dvx = -2 * (vx - vr * lineRadius * sin) / (1 + sin*sin);
         const dvr = -sin * dvx / lineRadius;
-        console.log(`dvx = ${dvx.toFixed(2)}, dvr = ${dvr.toFixed(5)}`);
         vx += dvx;
         vr += dvr;
         x1 = Math.max(0, Math.min(x1, canvas.width - 1));
@@ -95,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const cos = -Math.cos(th);
         const dvy = -2 * (vy + vr * lineRadius * cos) / (1 + cos*cos);
         const dvr = cos * dvy / lineRadius;
-        console.log(`dvy = ${dvy.toFixed(2)}, dvr = ${dvr.toFixed(5)}`);
         vy += dvy;
         vr += dvr;
         y0 = Math.max(0, Math.min(y0, canvas.height - 1));
@@ -107,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const cos = -Math.cos(th);
         const dvy = -2 * (vy - vr * lineRadius * cos) / (1 + cos*cos);
         const dvr = -cos * dvy / lineRadius;
-        console.log(`dvy = ${dvy.toFixed(2)}, dvr = ${dvr.toFixed(5)}`);
         vy += dvy;
         vr += dvr;
         y1 = Math.max(0, Math.min(y1, canvas.height - 1));
