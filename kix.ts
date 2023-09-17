@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", function() {
     canvas.width = window.innerWidth * 0.8;
     canvas.height = window.innerHeight * 0.8;
 
+    canvas.addEventListener('touchstart', () => {
+        showTrail = !showTrail;
+    });
+
     const lineRadius = Math.min(canvas.width, canvas.height) / 5;
 
     // Line center of mass
