@@ -147,8 +147,10 @@ document.addEventListener("DOMContentLoaded", function() {
             ctx.stroke();
         }
 
-        drawCircle(x0, y0, 'red');
-        drawCircle(x1, y1, 'green');
+        if (showQuantities || showVectors) {
+            drawCircle(x0, y0, 'red');
+            drawCircle(x1, y1, 'green');
+        }
 
         if (showVectors) {
             drawVector(xc, yc, vx, vy);

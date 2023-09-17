@@ -121,8 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
             ctx.lineTo(x1_1, y1_1);
             ctx.stroke();
         }
-        drawCircle(x0, y0, 'red');
-        drawCircle(x1, y1, 'green');
+        if (showQuantities || showVectors) {
+            drawCircle(x0, y0, 'red');
+            drawCircle(x1, y1, 'green');
+        }
         if (showVectors) {
             drawVector(xc, yc, vx, vy);
             drawVector(x0, y0, vx0, vy0, 'pink');
